@@ -25,10 +25,19 @@ apiVersion: v1
 kind: Service
 metadata:
   name: starbucks-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:ap-south-1:560185625463:certificate/3b25bb1e-d0ee-427a-93cb-fc64287938f8
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
 spec:
   type: LoadBalancer
   selector:
     app: starbucks
   ports:
-  - port: 80
+  - name: http
+    port: 80
     targetPort: 3000
+  - name: https
+    port: 443
+    targetPort: 3000
+
