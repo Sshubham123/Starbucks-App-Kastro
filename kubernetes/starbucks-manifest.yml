@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,7 +16,7 @@ spec:
     spec:
       containers:
       - name: starbucks-container
-        image: kastrov/starbucks
+        image: kastrov/starbucks   # Jenkins will append :<BUILD>
         ports:
         - containerPort: 3000
 ---
